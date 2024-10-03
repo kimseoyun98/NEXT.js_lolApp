@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: rgb(1, 10, 19);
+  --foreground: #ededed;
+  margin: 0 auto;
+  padding: 0 auto;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: rgb(1, 10, 19);
+    --foreground: #ededed;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+body {
+  overflow: auto;
+  color: var(--foreground);
+  background: var(--background);
+  font-family: "Nanum Gothic";
+}
+
+@layer base {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer components {
+  .common-box {
+    @apply block m-2 w-[160px] h-[200px] pt-4 p-2 border-gray-200 rounded-lg hover:bg-gray-100 dark:bg-white dark:bg-opacity-10 dark:border-gray-700 dark:hover:bg-gray-900;
+  }
+
+  .nav-link {
+    color: #bbbbbb;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.8rem;
+    text-wrap: nowrap;
+  }
+
+  .nav-link:hover {
+    color: #ffffff;
+    background-color: rgba(1, 10, 19, 0.4);
+    border-radius: 1rem;
+  }
+  .main-Imgbox {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+  }
+
+  .group:hover .main-Imgbox {
+    opacity: 1;
+    transition: 0.6s ease;
+  }
+}
+
+h1 {
+  @apply text-xxl text-white font-bold;
+}
+
+h2 {
+  @apply text-xl text-gold font-bold;
+}
+
+h3 {
+  @apply text-m text-gray-300 font-bold;
+}
+
+main {
+  @apply text-sm text-gray-400 font-light leading-7;
+}
+
+p {
+  @apply text-sm text-gray-400 font-light;
+}
+
+th,
+td {
+  @apply text-left border border-gray-800 p-2 text-sm text-gray-200 font-light;
+}
+
+thead {
+  @apply bg-gray-800 text-white;
+}
