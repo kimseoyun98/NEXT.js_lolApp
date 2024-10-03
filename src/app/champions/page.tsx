@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { LoadingSpinner } from "@/components/LoadingSpinner";
-import Image from "next/image";
-import Link from "next/link";
-import { Champion } from "@/types/Champion";
-import { fetchChampions, fetchVersions } from "@/utils/serverApi";
+import { useEffect, useState } from 'react';
+import { LoadingSpinner } from '@/components/LoadingSpinner';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Champion } from '@/types/Champion';
+import { fetchChampions, fetchVersions } from '@/utils/serverApi';
 
-const ChampionList = () => {
+const ChampionListPage = () => {
   const [champions, setChampions] = useState<{ [key: string]: Champion }>({});
   const [error, setError] = useState<string | null>(null);
-  const [latestVersion, setLatestVersion] = useState<string>("");
+  const [latestVersion, setLatestVersion] = useState<string>('');
 
   useEffect(() => {
     const loadVersions = async () => {
@@ -18,7 +18,7 @@ const ChampionList = () => {
         const versions = await fetchVersions(); // 버전 가져오기
         setLatestVersion(versions[0]); // 최신 버전 설정
       } catch (err: any) {
-        console.error("버전을 가져오는 데 실패했습니다:", err);
+        console.error('버전을 가져오는 데 실패했습니다:', err);
         setError(err.message);
       }
     };
@@ -28,7 +28,7 @@ const ChampionList = () => {
         const fetchedChampions = await fetchChampions(); // 챔피언 가져오기
         setChampions(fetchedChampions.data); // 챔피언 리스트를 data에서 가져옴
       } catch (err: any) {
-        console.error("챔피언 정보를 가져오는 데 실패했습니다:", err);
+        console.error('챔피언 정보를 가져오는 데 실패했습니다:', err);
         setError(err.message); // 에러 메시지 상태 업데이트
       }
     };
@@ -45,13 +45,13 @@ const ChampionList = () => {
           <p>{error}</p>
         ) : Object.keys(champions).length > 0 && latestVersion ? (
           Object.keys(champions).map((championKey) => {
-            const championDetail = champions[championKey]; // champions[championKey]로 챔피언 데이터에 접근
-            const imageUrl = `https://ddragon.leagueoflegends.com/cdn/${latestVersion}/img/champion/${championDetail.image.full}`;
+            const championList = champions[championKey]; // champions[championKey]로 챔피언 데이터에 접근
+            const imageUrl = `https://ddragon.leagueoflegends.com/cdn/${latestVersion}/img/champion/${championList.image.full}`;
 
             return (
               <Link
-                key={championDetail.id}
-                href={`/champions/${championDetail.id}`}
+                key={championList.id}
+                href={`/champions/${championList.id}`}
                 className="common-box"
               >
                 <div className="flex flex-col gap-3 items-center justify-center text-center">
@@ -59,11 +59,11 @@ const ChampionList = () => {
                     height={100}
                     width={100}
                     src={imageUrl}
-                    alt={championDetail.image.full}
+                    alt={championList.image.full}
                   />
                   <div>
-                    <h3>{championDetail.name}</h3>
-                    <p>{championDetail.title}</p>
+                    <h3>{championList.name}</h3>
+                    <p>{championList.title}</p>
                   </div>
                 </div>
               </Link>
@@ -77,4 +77,4 @@ const ChampionList = () => {
   );
 };
 
-export default ChampionList;
+export default ChampionListPage;

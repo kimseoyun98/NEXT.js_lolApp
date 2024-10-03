@@ -1,23 +1,23 @@
-"use client"
+'use client';
 
-import { useEffect, useState } from "react";
-import { LoadingSpinner } from "@/components/LoadingSpinner";
-import Image from "next/image";
-import { fetchItems, fetchVersions } from "@/utils/serverApi";
-import Link from "next/link";
+import { useEffect, useState } from 'react';
+import { LoadingSpinner } from '@/components/LoadingSpinner';
+import Image from 'next/image';
+import { fetchItems, fetchVersions } from '@/utils/serverApi';
+import Link from 'next/link';
 
-const ItemList = () => {
+const ItemListPage = () => {
   const [items, setItems] = useState<any>({});
   const [error, setError] = useState<string | null>(null);
-  const [latestVersion, setLatestVersion] = useState<string>("");
+  const [latestVersion, setLatestVersion] = useState<string>('');
 
   useEffect(() => {
     const loadVersions = async () => {
       try {
-        const versions = await fetchVersions();
-        setLatestVersion(versions[0]);
+        const fetchedVersions = await fetchVersions();
+        setLatestVersion(fetchedVersions[0]);
       } catch (err: any) {
-        console.error("버전을 가져오는 데 실패했습니다:", err);
+        console.error('버전을 가져오는 데 실패했습니다:', err);
         setError(err.message);
       }
     };
@@ -27,7 +27,7 @@ const ItemList = () => {
         const fetchedItems = await fetchItems();
         setItems(fetchedItems.data);
       } catch (err: any) {
-        console.error("아이템 정보를 가져오는 데 실패했습니다:", err);
+        console.error('아이템 정보를 가져오는 데 실패했습니다:', err);
         setError(err.message);
       }
     };
@@ -44,13 +44,13 @@ const ItemList = () => {
           <p>{error}</p>
         ) : Object.keys(items).length > 0 && latestVersion ? (
           Object.keys(items).map((itemKey) => {
-            const itemDetail = items[itemKey];
-            const itemImageUrl = `https://ddragon.leagueoflegends.com/cdn/${latestVersion}/img/item/${itemDetail.image.full}`;
+            const itemListDetail = items[itemKey];
+            const itemImageUrl = `https://ddragon.leagueoflegends.com/cdn/${latestVersion}/img/item/${itemListDetail.image.full}`;
 
             return (
               <Link
-                key={itemDetail.id}
-                href={`/items/${itemDetail.id}`}
+                key={itemListDetail.id}
+                href={`/items/${itemListDetail.id}`}
                 className="common-box"
               >
                 <div className="flex flex-col gap-3 items-center justify-center text-center">
@@ -58,11 +58,11 @@ const ItemList = () => {
                     height={100}
                     width={100}
                     src={itemImageUrl}
-                    alt={itemDetail.name}
+                    alt={itemListDetail.name}
                   />
                   <div>
-                    <h3>{itemDetail.name}</h3>
-                    <p>{`${itemDetail.gold.base} RP`}</p>
+                    <h3>{itemListDetail.name}</h3>
+                    <p>{`${itemListDetail.gold.base} RP`}</p>
                   </div>
                 </div>
               </Link>
@@ -76,4 +76,4 @@ const ItemList = () => {
   );
 };
 
-export default ItemList;
+export default ItemListPage;
