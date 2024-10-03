@@ -22,10 +22,7 @@ const ChampionList = () => {
         setError(err.message);
       }
     };
-    loadVersions(); // useEffect 안에서 비동기 호출
-  }, []);
 
-  useEffect(() => {
     const loadChampions = async () => {
       try {
         const fetchedChampions = await fetchChampions(); // 챔피언 가져오기
@@ -36,6 +33,7 @@ const ChampionList = () => {
       }
     };
 
+    loadVersions(); // useEffect 안에서 비동기 호출
     loadChampions();
   }, []);
 

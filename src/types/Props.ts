@@ -1,5 +1,5 @@
 export type Props = {
   params: {
-    key: string;
+    id: string;
   };
 };

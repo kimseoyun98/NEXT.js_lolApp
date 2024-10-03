@@ -5,7 +5,7 @@ import { Props } from "@/types/Props";
 import { fetchChampionsDetail, fetchVersions } from "@/utils/serverApi"; // 데이터 가져오기
 
 async function ChampionPage({ params }: Props) {
-  const championDetail = await fetchChampionsDetail(params.key); // 특정 챔피언 데이터 불러오기
+  const championDetail = await fetchChampionsDetail(params.id); // 특정 챔피언 데이터 불러오기
   const versions = await fetchVersions(); // 최신 버전 가져오기
   const latestVersion = versions[0]; // 최신 버전 선택
 
