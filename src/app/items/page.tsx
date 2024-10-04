@@ -16,8 +16,9 @@ const ItemListPage = () => {
       try {
         const fetchedVersions = await fetchVersions();
         setLatestVersion(fetchedVersions[0]);
+        setError(null);
       } catch (err: any) {
-        console.error('버전을 가져오는 데 실패했습니다:', err);
+        // console.error('버전을 가져오는 데 실패했습니다:', err);
         setError(err.message);
       }
     };
@@ -26,8 +27,9 @@ const ItemListPage = () => {
       try {
         const fetchedItems = await fetchItems();
         setItems(fetchedItems.data);
+        setError(null);
       } catch (err: any) {
-        console.error('아이템 정보를 가져오는 데 실패했습니다:', err);
+        // console.error('아이템 정보를 가져오는 데 실패했습니다:', err);
         setError(err.message);
       }
     };
@@ -48,24 +50,26 @@ const ItemListPage = () => {
             const itemImageUrl = `https://ddragon.leagueoflegends.com/cdn/${latestVersion}/img/item/${itemListDetail.image.full}`;
 
             return (
-              <Link
-                key={itemListDetail.name}
-                href={`/items/${itemListDetail.name}`}
-                className="common-box"
-              >
-                <div className="flex flex-col gap-3 items-center justify-center text-center">
-                  <Image
-                    height={100}
-                    width={100}
-                    src={itemImageUrl}
-                    alt={itemListDetail.name}
-                  />
-                  <div>
-                    <h3 className="line-clamp-1">{itemListDetail.name}</h3>
-                    <p className="line-clamp-1">{`${itemListDetail.gold.base} RP`}</p>
+              <div key={itemListDetail.id}>
+                <Link
+                  key={itemListDetail.name}
+                  href={`/items/${itemListDetail.name}`}
+                  className="common-box"
+                >
+                  <div className="flex flex-col gap-3 items-center justify-center text-center">
+                    <Image
+                      height={100}
+                      width={100}
+                      src={itemImageUrl}
+                      alt={itemListDetail.name}
+                    />
+                    <div>
+                      <h3 className="line-clamp-1">{itemListDetail.name}</h3>
+                      <p className="line-clamp-1">{`${itemListDetail.gold.base} RP`}</p>
+                    </div>
                   </div>
-                </div>
-              </Link>
+                </Link>
+              </div>
             );
           })
         ) : (

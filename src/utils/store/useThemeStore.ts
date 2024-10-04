@@ -2,8 +2,8 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 type ThemeState = {
-  darkMode: boolean; // 다크 모드 상태
-  toggleDarkMode: () => void; // 다크 모드 토글 함수
+  darkMode: boolean;
+  toggleDarkMode: () => void;
 };
 
 export const useThemeStore = create<ThemeState>()(
@@ -11,10 +11,10 @@ export const useThemeStore = create<ThemeState>()(
   persist(
     (set) => ({
       darkMode: false,
-      toggleDarkMode: () => set((state) => ({ darkMode: !state.darkMode })), // 다크 모드 토글
+      toggleDarkMode: () => set((state) => ({ darkMode: !state.darkMode })),
     }),
     {
-      name: 'theme-storage', // 로컬 스토리지에서 사용할 키
+      name: 'theme-storage',
     }
   )
 );

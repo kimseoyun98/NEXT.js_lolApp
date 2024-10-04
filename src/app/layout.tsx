@@ -18,7 +18,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { darkMode } = useThemeStore(); // Zustand 스토어에서 다크 모드 상태 가져오기
+  const { darkMode } = useThemeStore();
 
   // 다크 모드에 따라 클래스 토글
   useEffect(() => {

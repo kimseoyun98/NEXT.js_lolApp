@@ -7,7 +7,6 @@ const ChampionPage = async ({ params }: Props) => {
   const fetchedVersions = await fetchVersions();
   const latestVersion = fetchedVersions[0];
 
-  // 챔피언을 찾지 못한 경우의 처리
   if (!fetchedChampionDetail) {
     return <div>챔피언을 찾을 수 없습니다.</div>;
   }

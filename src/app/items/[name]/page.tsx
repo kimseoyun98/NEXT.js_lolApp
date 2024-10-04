@@ -3,10 +3,7 @@ import { fetchItemsDetail, fetchVersions } from '@/utils/serverApi';
 import Image from 'next/image';
 
 const ItemPage = async ({ params }: Props) => {
-  console.log('파람스:', params);
   const itemName = decodeURIComponent(params.name);
-  console.log('디코딩된 이름:', itemName);
-
   const fetchedItemDetail = await fetchItemsDetail(itemName);
   const fetchedVersions = await fetchVersions();
   const latestVersion = fetchedVersions[0];

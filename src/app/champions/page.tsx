@@ -15,25 +15,25 @@ const ChampionListPage = () => {
   useEffect(() => {
     const loadVersions = async () => {
       try {
-        const fetchedVersions = await fetchVersions(); // 버전 가져오기
-        setLatestVersion(fetchedVersions[0]); // 최신 버전 설정
+        const fetchedVersions = await fetchVersions();
+        setLatestVersion(fetchedVersions[0]);
+        setError(null);
       } catch (err: any) {
-        console.error('버전을 가져오는 데 실패했습니다:', err);
         setError(err.message);
       }
     };
 
     const loadChampions = async () => {
       try {
-        const fetchedChampions = await fetchChampions(); // 챔피언 가져오기
-        setChampions(fetchedChampions.data); // 챔피언 리스트를 data에서 가져옴
+        const fetchedChampions = await fetchChampions();
+        setChampions(fetchedChampions.data);
+        setError(null);
       } catch (err: any) {
-        console.error('챔피언 정보를 가져오는 데 실패했습니다:', err);
-        setError(err.message); // 에러 메시지 상태 업데이트
+        setError(err.message);
       }
     };
 
-    loadVersions(); // useEffect 안에서 비동기 호출
+    loadVersions();
     loadChampions();
   }, []);
 

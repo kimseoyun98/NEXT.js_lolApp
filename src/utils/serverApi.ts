@@ -1,5 +1,5 @@
 import { Champion, ChampionData } from '@/types/Champion';
-import { Item, ItemData } from '@/types/Item';
+import { ItemData } from '@/types/Item';
 
 export async function fetchVersions(): Promise<string[]> {
   try {
@@ -7,9 +7,9 @@ export async function fetchVersions(): Promise<string[]> {
       'https://ddragon.leagueoflegends.com/api/versions.json',
       {
         method: 'GET',
-        // next: {
-        //   revalidate: 86400,
-        // },
+        next: {
+          revalidate: 86400,
+        },
       }
     );
 
@@ -33,9 +33,9 @@ export async function fetchChampions(): Promise<ChampionData> {
       `https://ddragon.leagueoflegends.com/cdn/${latestVersion}/data/ko_KR/champion.json`,
       {
         method: 'GET',
-        // next: {
-        //   revalidate: 86400,
-        // },
+        next: {
+          revalidate: 86400,
+        },
       }
     );
 
@@ -59,9 +59,9 @@ export async function fetchChampionsDetail(key: string): Promise<Champion> {
       `https://ddragon.leagueoflegends.com/cdn/${latestVersion}/data/ko_KR/champion/${key}.json`,
       {
         method: 'GET',
-        // next: {
-        //   revalidate: 86400,
-        // },
+        next: {
+          revalidate: 86400,
+        },
       }
     );
 
@@ -91,9 +91,9 @@ export async function fetchItems(): Promise<ItemData> {
       `https://ddragon.leagueoflegends.com/cdn/${latestVersion}/data/ko_KR/item.json`,
       {
         method: 'GET',
-        // next: {
-        //   revalidate: 86400,
-        // },
+        next: {
+          revalidate: 86400,
+        },
       }
     );
 
@@ -113,11 +113,13 @@ export async function fetchItemsDetail(name: string): Promise<any> {
     const fetchedVersions = await fetchVersions();
     const latestVersion = fetchedVersions[0];
 
-    // API로부터 전체 아이템 목록 가져오기
     const res = await fetch(
       `https://ddragon.leagueoflegends.com/cdn/${latestVersion}/data/ko_KR/item.json`,
       {
         method: 'GET',
+        next: {
+          revalidate: 86400,
+        },
       }
     );
 
@@ -128,7 +130,6 @@ export async function fetchItemsDetail(name: string): Promise<any> {
     const data = await res.json();
     const itemsDetail = data.data;
 
-    // name을 디코딩하고 해당 이름을 가진 아이템 찾기
     const decodedName = decodeURIComponent(name);
     const itemDetail = Object.values(itemsDetail).find(
       (item: any) => item.name === decodedName
@@ -138,7 +139,7 @@ export async function fetchItemsDetail(name: string): Promise<any> {
       throw new Error(`Item "${decodedName}" not found.`);
     }
 
-    return itemDetail; // 찾은 아이템 반환
+    return itemDetail;
   } catch (error: any) {
     throw new Error(error.message);
   }

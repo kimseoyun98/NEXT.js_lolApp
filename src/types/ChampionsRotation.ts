@@ -1,5 +1,1 @@
-export type ChampionsRotation = {
-  freeChampionIds: number[];
-  freeChampionIdsForNewPlayers: number[];
-  maxNewPlayerLevel: number;
-};
+export type ChampionsRotation = number[];
