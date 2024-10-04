@@ -108,34 +108,38 @@ export async function fetchItems(): Promise<ItemData> {
   }
 }
 
-export async function fetchItemsDetail(key: string): Promise<Item> {
+export async function fetchItemsDetail(name: string): Promise<any> {
   try {
-    const fetchedversions = await fetchVersions();
-    const latestVersion = fetchedversions[0];
+    const fetchedVersions = await fetchVersions();
+    const latestVersion = fetchedVersions[0];
 
+    // API로부터 전체 아이템 목록 가져오기
     const res = await fetch(
-      `https://ddragon.leagueoflegends.com/cdn/${latestVersion}/data/ko_KR/item/${key}.json`,
+      `https://ddragon.leagueoflegends.com/cdn/${latestVersion}/data/ko_KR/item.json`,
       {
         method: 'GET',
-        // next: {
-        //   revalidate: 86400,
-        // },
       }
     );
 
     if (!res.ok) {
-      `error: ${res.status})`;
+      throw new Error(`Error: ${res.status}`);
     }
 
     const data = await res.json();
-    const itemsDetail: Item = data.data[key];
+    const itemsDetail = data.data;
 
-    if (!itemsDetail) {
-      throw Error(`아이템 "${key}"에 해당하는 챔피언을 찾을 수 없습니다.`);
+    // name을 디코딩하고 해당 이름을 가진 아이템 찾기
+    const decodedName = decodeURIComponent(name);
+    const itemDetail = Object.values(itemsDetail).find(
+      (item: any) => item.name === decodedName
+    );
+
+    if (!itemDetail) {
+      throw new Error(`Item "${decodedName}" not found.`);
     }
 
-    return itemsDetail;
+    return itemDetail; // 찾은 아이템 반환
   } catch (error: any) {
-    throw Error(error.message);
+    throw new Error(error.message);
   }
 }

@@ -15,8 +15,8 @@ const ChampionListPage = () => {
   useEffect(() => {
     const loadVersions = async () => {
       try {
-        const versions = await fetchVersions(); // 버전 가져오기
-        setLatestVersion(versions[0]); // 최신 버전 설정
+        const fetchedVersions = await fetchVersions(); // 버전 가져오기
+        setLatestVersion(fetchedVersions[0]); // 최신 버전 설정
       } catch (err: any) {
         console.error('버전을 가져오는 데 실패했습니다:', err);
         setError(err.message);
@@ -45,7 +45,7 @@ const ChampionListPage = () => {
           <p>{error}</p>
         ) : Object.keys(champions).length > 0 && latestVersion ? (
           Object.keys(champions).map((championKey) => {
-            const championList = champions[championKey]; // champions[championKey]로 챔피언 데이터에 접근
+            const championList = champions[championKey];
             const imageUrl = `https://ddragon.leagueoflegends.com/cdn/${latestVersion}/img/champion/${championList.image.full}`;
 
             return (
@@ -62,8 +62,8 @@ const ChampionListPage = () => {
                     alt={championList.image.full}
                   />
                   <div>
-                    <h3>{championList.name}</h3>
-                    <p>{championList.title}</p>
+                    <h3 className="line-clamp-1">{championList.name}</h3>
+                    <p className="line-clamp-1">{championList.title}</p>
                   </div>
                 </div>
               </Link>

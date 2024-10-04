@@ -49,8 +49,8 @@ const ItemListPage = () => {
 
             return (
               <Link
-                key={itemListDetail.id}
-                href={`/items/${itemListDetail.id}`}
+                key={itemListDetail.name}
+                href={`/items/${itemListDetail.name}`}
                 className="common-box"
               >
                 <div className="flex flex-col gap-3 items-center justify-center text-center">
@@ -61,8 +61,8 @@ const ItemListPage = () => {
                     alt={itemListDetail.name}
                   />
                   <div>
-                    <h3>{itemListDetail.name}</h3>
-                    <p>{`${itemListDetail.gold.base} RP`}</p>
+                    <h3 className="line-clamp-1">{itemListDetail.name}</h3>
+                    <p className="line-clamp-1">{`${itemListDetail.gold.base} RP`}</p>
                   </div>
                 </div>
               </Link>

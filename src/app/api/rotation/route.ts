@@ -1,11 +1,16 @@
 import { ChampionsRotation } from '@/types/ChampionsRotation';
 import { NextResponse } from 'next/server';
 
-export async function GET() {
+export async function GET(): Promise<
+  NextResponse<ChampionsRotation | { message: string }>
+> {
   const apiKey = process.env.RIOT_API_KEY;
 
   if (!apiKey) {
-    throw new Error('API 키가 없습니다!');
+    return NextResponse.json(
+      { message: 'API 키가 없습니다!' },
+      { status: 500 }
+    );
   }
 
   try {
@@ -19,20 +24,15 @@ export async function GET() {
       }
     );
 
-    console.log('Response status:', res.status);
-
     if (!res.ok) {
-      throw new Error(`HTTP error! status: ${res.status}`);
+      throw Error(`HTTP 오류 발생! 상태: ${res.status} - ${res.statusText}`);
     }
-
-    // API 응답에서 JSON 데이터를 추출
     const data: ChampionsRotation = await res.json();
-    console.log('Fetched data:', data);
+    console.log('가져온데이터:', data);
 
-    // 여기서 data를 직접 반환
     return NextResponse.json(data);
   } catch (error: any) {
-    console.error('Error fetching data:', error.message);
+    console.error('데이터를 가져오는 중 오류:', error);
     return NextResponse.json({ message: error.message }, { status: 500 });
   }
 }

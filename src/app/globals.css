@@ -5,15 +5,6 @@
 :root {
   --background: rgb(1, 10, 19);
   --foreground: #ededed;
-  margin: 0 auto;
-  padding: 0 auto;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: rgb(1, 10, 19);
-    --foreground: #ededed;
-  }
 }
 
 ::-webkit-scrollbar {
@@ -25,7 +16,7 @@ body {
   overflow: auto;
   color: var(--foreground);
   background: var(--background);
-  font-family: "Nanum Gothic";
+  font-family: 'Nanum Gothic';
 }
 
 @layer base {
@@ -36,7 +27,7 @@ body {
 
 @layer components {
   .common-box {
-    @apply block m-2 w-[160px] h-[200px] pt-4 p-2 border-gray-200 rounded-lg hover:bg-gray-100 dark:bg-white dark:bg-opacity-10 dark:border-gray-700 dark:hover:bg-gray-900;
+    @apply block m-2 w-[160px] h-[200px] pt-4 p-2 bg-white bg-opacity-10 border-gray-700 hover:bg-gray-900;
   }
 
   .nav-link {
@@ -70,7 +61,7 @@ body {
 }
 
 h1 {
-  @apply text-xxl text-white font-bold;
+  @apply text-xxl font-bold;
 }
 
 h2 {
@@ -95,5 +86,83 @@ td {
 }
 
 thead {
-  @apply bg-gray-800 text-white;
+  @apply bg-gray-800;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: #ffffff; /* 밝은 배경 */
+    --foreground: #333333; /* 어두운 텍스트 색상 */
+  }
+
+  body {
+    color: var(--foreground);
+    background: var(--background);
+  }
+
+  @layer base {
+    .text-balance {
+      text-wrap: balance;
+    }
+  }
+
+  @layer components {
+    .common-box {
+      @apply block m-2 w-[160px] h-[200px] pt-4 p-2 bg-white border-gray-200 hover:bg-gray-100;
+    }
+
+    .nav-link {
+      color: #333333; /* 기본 링크 색상 */
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 0.8rem;
+      text-wrap: nowrap;
+    }
+
+    .nav-link:hover {
+      color: #000000; /* 호버 시 링크 색상 */
+      background-color: rgba(200, 200, 200, 0.4); /* 호버 시 배경 색상 */
+      border-radius: 1rem;
+    }
+
+    .main-Imgbox {
+      background-color: rgba(255, 255, 255, 0.5); /* 밝은 이미지 배경 */
+      opacity: 0; /* 기본적으로 숨김 */
+    }
+
+    .group:hover .main-Imgbox {
+      opacity: 1; /* 호버 시 보이기 */
+      transition: 0.6s ease;
+    }
+  }
+
+  h1 {
+    @apply text-xxl font-bold; /* 밝은 모드에서의 제목 색상 */
+  }
+
+  h2 {
+    @apply text-xl text-orange-500 font-bold; /* 밝은 모드에서의 제목 색상 */
+  }
+
+  h3 {
+    @apply text-m text-gray-700 font-bold; /* 밝은 모드에서의 제목 색상 */
+  }
+
+  main {
+    @apply text-sm text-gray-800 font-light leading-7; /* 밝은 모드에서의 본문 텍스트 색상 */
+  }
+
+  p {
+    @apply text-sm text-gray-700 font-light; /* 밝은 모드에서의 단락 텍스트 색상 */
+  }
+
+  th,
+  td {
+    @apply text-left border border-gray-300 p-2 text-sm text-gray-800 font-light; /* 테이블 스타일 */
+  }
+
+  thead {
+    @apply bg-gray-200; /* 테이블 헤더 스타일 */
+  }
 }

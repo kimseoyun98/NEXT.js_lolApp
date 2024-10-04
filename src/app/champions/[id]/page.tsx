@@ -1,15 +1,15 @@
 import Image from 'next/image';
 import { Props } from '@/types/Props';
-import { fetchChampionsDetail, fetchVersions } from '@/utils/serverApi'; // 데이터 가져오기
+import { fetchChampionsDetail, fetchVersions } from '@/utils/serverApi';
 
 const ChampionPage = async ({ params }: Props) => {
-  const fetchedChampionDetail = await fetchChampionsDetail(params.id); // 특정 챔피언 데이터 불러오기
-  const fetchedVersions = await fetchVersions(); // 최신 버전 가져오기
-  const latestVersion = fetchedVersions[0]; // 최신 버전 선택
+  const fetchedChampionDetail = await fetchChampionsDetail(params.id);
+  const fetchedVersions = await fetchVersions();
+  const latestVersion = fetchedVersions[0];
 
   // 챔피언을 찾지 못한 경우의 처리
   if (!fetchedChampionDetail) {
-    return <div>챔피언을 찾을 수 없습니다.</div>; // 오류 메시지 또는 대체 UI
+    return <div>챔피언을 찾을 수 없습니다.</div>;
   }
   const imageUrl = `https://ddragon.leagueoflegends.com/cdn/${latestVersion}/img/champion/${fetchedChampionDetail.image.full}`;
 
