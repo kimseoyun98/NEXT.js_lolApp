@@ -4,6 +4,8 @@ import './globals.css';
 import { Nanum_Gothic } from 'next/font/google';
 import { Navbar } from '@/components/Navbar';
 import { useEffect } from 'react';
+import { useThemeStore } from '@/utils/store/useThemeStore';
+import ThemeSwitchButton from '@/components/ThemeSwitch';
 
 const nanumGothic = Nanum_Gothic({
   weight: ['400', '800'],
@@ -16,19 +18,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  useEffect(() => {
-    const userPreferredDarkMode = localStorage.getItem('darkMode') === 'true';
-    if (userPreferredDarkMode) {
-      document.documentElement.classList.add('dark');
-    }
-  }, []);
+  const { darkMode } = useThemeStore(); // Zustand 스토어에서 다크 모드 상태 가져오기
 
-  const toggleDarkMode = () => {
-    // 현재 다크 모드 상태를 토글하고, 새로운 상태를 변수에 저장
-    const darkModeEnabled = document.documentElement.classList.toggle('dark');
-    // boolean 값을 문자열로 변환하여 로컬 스토리지에 저장
-    localStorage.setItem('darkMode', String(darkModeEnabled)); // 또는 darkModeEnabled.toString() 사용 가능
-  };
+  // 다크 모드에 따라 클래스 토글
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', darkMode);
+  }, [darkMode]);
 
   return (
     <html lang="ko">
@@ -40,8 +35,9 @@ export default function RootLayout({
       </head>
       <body className={`${nanumGothic.variable} antialiased`}>
         <Navbar />
-        <button onClick={toggleDarkMode}>다크 모드 전환</button>
-        <main className="mt-20 p-6"> {children}</main>
+        <main className="mt-20 p-6">{children}</main>
+        <div className="fixed bottom-5 right-5"></div>
+        <ThemeSwitchButton />
       </body>
     </html>
   );

@@ -22,8 +22,8 @@ const ItemPage = async ({ params }: Props) => {
         <div className="flex flex-row items-center gap-2 text-nowrap">
           <h2>{fetchedItemDetail.name}</h2>
           {'▸'}
-          <p>{fetchedItemDetail.gold.base}</p>
-        </div>{' '}
+          <p>{fetchedItemDetail.gold.base} RP</p>
+        </div>
         <Image
           height={100}
           width={100}
@@ -52,6 +52,7 @@ const ItemPage = async ({ params }: Props) => {
           dangerouslySetInnerHTML={{
             __html: fetchedItemDetail.description,
           }}
+          className="w-[350px] text-center"
         />
       </div>
     </div>

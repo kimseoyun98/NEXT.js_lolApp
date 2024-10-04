@@ -1,5 +1,5 @@
-import Link from "next/link";
-import Image from "next/image";
+import Link from 'next/link';
+import Image from 'next/image';
 
 export const MainImage1 = () => {
   return (
@@ -13,7 +13,7 @@ export const MainImage1 = () => {
           alt="main-image1"
         />
         <div className="main-Imgbox">
-          <p className="text-white text-l font-bold">챔피언 목록 보기</p>
+          <p className="text-white text-l font-md">챔피언 목록 보기</p>
         </div>
       </Link>
     </div>
@@ -32,7 +32,7 @@ export const MainImage2 = () => {
           alt="main-image2"
         />
         <div className="main-Imgbox">
-          <p className="text-white text-l font-bold">아이템 목록 보기</p>
+          <p className="text-white text-l font-md">아이템 목록 보기</p>
         </div>
       </Link>
     </div>
@@ -51,7 +51,7 @@ export const MainImage3 = () => {
           alt="main-image3"
         />
         <div className="main-Imgbox">
-          <p className="text-white text-l font-bold">챔피언 로테이션</p>
+          <p className="text-white text-l font-md">챔피언 로테이션</p>
         </div>
       </Link>
     </div>
