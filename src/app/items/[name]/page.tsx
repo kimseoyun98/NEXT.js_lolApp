@@ -65,4 +65,28 @@ const ItemPage = async ({ params }: Props) => {
   }
 };
 
+export async function generateMetadata({ params }: Props) {
+  const itemName = decodeURIComponent(params.name);
+
+  const fetchedItemDetail = await fetchItemsDetail(itemName);
+
+  return {
+    title: fetchedItemDetail ? fetchedItemDetail.name : '아이템 페이지',
+    description: fetchedItemDetail
+      ? fetchedItemDetail.plaintext
+      : '아이템 정보를 가져올 수 없습니다.',
+    openGraph: {
+      title: fetchedItemDetail ? fetchedItemDetail.name : '아이템 페이지',
+      description: fetchedItemDetail
+        ? fetchedItemDetail.plaintext
+        : '아이템 정보를 가져올 수 없습니다.',
+      images: [
+        fetchedItemDetail
+          ? `https://ddragon.leagueoflegends.com/cdn/img/item/${fetchedItemDetail.image.full}`
+          : null,
+      ],
+    },
+  };
+}
+
 export default ItemPage;

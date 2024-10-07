@@ -53,7 +53,6 @@ const RotationPage = () => {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3,
-    initialSlide: 1,
     arrows: false,
     responsive: [
       {
@@ -101,7 +100,7 @@ const RotationPage = () => {
                     alt={champion.name}
                     className="w-120 h-auto mx-auto"
                   />
-                  <h3 className="text-center mt-4 mb-4">{champion.name}</h3>
+                  <p className="text-center mt-2 mb-4">{champion.name}</p>
                 </div>
               );
             })}

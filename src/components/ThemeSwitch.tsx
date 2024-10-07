@@ -16,8 +16,8 @@ const ThemeSwitchButton = () => {
 
   return (
     <button
-      onClick={toggleDarkMode} // 버튼 클릭 시 다크 모드 토글
-      className="fixed bottom-4 right-4 size-12 bg-white dark:bg-slate-900 dark:text-white rounded-full shadow-md flex items-center justify-center"
+      onClick={toggleDarkMode}
+      className="fixed bottom-8 right-8 size-12 bg-white dark:bg-slate-900 dark:text-white rounded-full shadow-md flex items-center justify-center"
     >
       {darkMode ? <Moon /> : <Sun />}
     </button>

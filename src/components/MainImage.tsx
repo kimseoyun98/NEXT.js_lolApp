@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export const MainImage1 = () => {
   return (
-    <div className="relative w-full h-[300px] group overflow-hidden">
+    <div className="relative w-full h-[400px] group overflow-hidden">
       <Link href="/champions" className="relative w-full h-full">
         <Image
           width={1920}
@@ -22,7 +22,7 @@ export const MainImage1 = () => {
 
 export const MainImage2 = () => {
   return (
-    <div className="relative w-full h-[300px] group overflow-hidden">
+    <div className="relative w-full h-[400px] group overflow-hidden">
       <Link href="/items" className="relative w-full h-full">
         <Image
           width={1920}
@@ -41,7 +41,7 @@ export const MainImage2 = () => {
 
 export const MainImage3 = () => {
   return (
-    <div className="relative w-full h-[300px] group overflow-hidden">
+    <div className="relative w-full h-[400px] group overflow-hidden">
       <Link href="/rotation" className="relative w-full h-full">
         <Image
           width={1920}

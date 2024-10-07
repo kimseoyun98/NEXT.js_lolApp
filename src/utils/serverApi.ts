@@ -8,9 +8,6 @@ export async function fetchVersions(): Promise<string[]> {
     'https://ddragon.leagueoflegends.com/api/versions.json',
     {
       method: 'GET',
-      next: {
-        revalidate: 86400,
-      },
     }
   );
 
@@ -80,9 +77,6 @@ export async function fetchItems(): Promise<ItemData> {
     `https://ddragon.leagueoflegends.com/cdn/${latestVersion}/data/ko_KR/item.json`,
     {
       method: 'GET',
-      next: {
-        revalidate: 86400,
-      },
     }
   );
 
@@ -102,9 +96,6 @@ export async function fetchItemsDetail(name: string): Promise<any> {
     `https://ddragon.leagueoflegends.com/cdn/${latestVersion}/data/ko_KR/item.json`,
     {
       method: 'GET',
-      next: {
-        revalidate: 86400,
-      },
     }
   );
 

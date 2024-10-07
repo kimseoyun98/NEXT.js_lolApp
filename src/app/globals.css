@@ -77,24 +77,6 @@ tr {
   transition: 0.6s ease;
 }
 
-.dark .common-box {
-  @apply block m-2 w-[160px] h-[200px] pt-4 p-2 border-none rounded-xl shadow-custom-dark;
-}
-
-.dark .common-box:hover {
-  @apply bg-gray-900;
-}
-
-.dark .nav-link {
-  color: #bbbbbb;
-}
-
-.dark .nav-link:hover {
-  color: #ffffff;
-  background-color: rgba(1, 10, 19, 0.4);
-  border-radius: 1rem;
-}
-
 .dark {
   --background: rgb(1, 10, 19);
 }
@@ -127,19 +109,30 @@ tr {
 .dark tr {
   @apply bg-gray-900;
 }
+.dark .common-box {
+  @apply block m-2 w-[160px] h-[200px] pt-4 p-2 border-none rounded-xl shadow-custom-dark;
+}
+
+.dark .common-box:hover {
+  @apply bg-gray-900;
+}
+
+.dark .nav-link {
+  color: #bbbbbb;
+}
+
+.dark .nav-link:hover {
+  color: #ffffff;
+  background-color: rgba(1, 10, 19, 0.4);
+  border-radius: 1rem;
+}
 
 .dark .slick-dots {
   display: flex;
   justify-content: center;
 }
 
-.dark .slick-dots li {
-  margin: 0 1px;
-}
-
 .dark .slick-dots li button:before {
-  font-size: 4px;
-  margin-top: 40px;
   color: white;
   opacity: 0.2;
 }

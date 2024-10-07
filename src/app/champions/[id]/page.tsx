@@ -95,4 +95,30 @@ const ChampionPage = async ({ params }: Props) => {
     </div>
   );
 };
+
+export async function generateMetadata({ params }: Props) {
+  const fetchedChampionsDetail = await fetchChampionsDetail(params.id);
+
+  return {
+    title: fetchedChampionsDetail
+      ? fetchedChampionsDetail.name
+      : '아이템 페이지',
+    description: fetchedChampionsDetail
+      ? fetchedChampionsDetail.id
+      : '아이템 정보를 가져올 수 없습니다.',
+    openGraph: {
+      title: fetchedChampionsDetail
+        ? fetchedChampionsDetail.name
+        : '아이템 페이지',
+      description: fetchedChampionsDetail
+        ? fetchedChampionsDetail.id
+        : '아이템 정보를 가져올 수 없습니다.',
+      images: [
+        fetchedChampionsDetail
+          ? `https://ddragon.leagueoflegends.com/cdn/img/item/${fetchedChampionsDetail.image.full}`
+          : null,
+      ],
+    },
+  };
+}
 export default ChampionPage;
