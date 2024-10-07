@@ -1,10 +1,6 @@
-'use client';
-
 import './globals.css';
 import { Nanum_Gothic } from 'next/font/google';
 import { Navbar } from '@/components/Navbar';
-import { useEffect } from 'react';
-import { useThemeStore } from '@/utils/store/useThemeStore';
 import ThemeSwitchButton from '@/components/ThemeSwitch';
 import { Metadata } from 'next';
 
@@ -24,12 +20,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { darkMode } = useThemeStore();
-
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark', darkMode);
-  }, [darkMode]);
-
   return (
     <html lang="ko">
       <head>

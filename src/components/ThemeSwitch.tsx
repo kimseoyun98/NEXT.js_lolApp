@@ -1,4 +1,5 @@
 'use client';
+
 import { useThemeStore } from '@/utils/store/useThemeStore';
 import { Moon, Sun } from 'lucide-react';
 import React, { useEffect } from 'react';
@@ -17,9 +18,14 @@ const ThemeSwitchButton = () => {
   return (
     <button
       onClick={toggleDarkMode}
-      className="fixed bottom-8 right-8 size-12 bg-white dark:bg-slate-900 dark:text-white rounded-full shadow-md flex items-center justify-center"
+      aria-label={darkMode ? 'Light mode' : 'Dark mode'}
+      className="fixed bottom-8 right-8 p-4 bg-white dark:bg-gray-900 dark:text-white rounded-full shadow-lg flex items-center justify-center transition duration-200 ease-in-out"
     >
-      {darkMode ? <Moon /> : <Sun />}
+      {darkMode ? (
+        <Moon className="transition-transform duration-200" />
+      ) : (
+        <Sun className="transition-transform duration-200" />
+      )}
     </button>
   );
 };
