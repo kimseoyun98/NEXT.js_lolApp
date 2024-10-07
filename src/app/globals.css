@@ -54,6 +54,9 @@ body {
     opacity: 1; /* 호버 시 보이기 */
     transition: 0.6s ease;
   }
+  .slick-list {
+    overflow: hidden;
+  }
 }
 
 /* 기본 제목 및 본문 스타일 */

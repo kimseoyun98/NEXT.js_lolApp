@@ -5,37 +5,29 @@ import { LoadingSpinner } from '@/components/LoadingSpinner';
 import Image from 'next/image';
 import { fetchItems, fetchVersions } from '@/utils/serverApi';
 import Link from 'next/link';
+import { Item } from '@/types/Item';
 
 const ItemListPage = () => {
-  const [items, setItems] = useState<any>({});
+  const [items, setItems] = useState<{ [key: string]: Item }>({});
   const [error, setError] = useState<string | null>(null);
   const [latestVersion, setLatestVersion] = useState<string>('');
 
   useEffect(() => {
-    const loadVersions = async () => {
+    const loadData = async () => {
       try {
-        const fetchedVersions = await fetchVersions();
+        const [fetchedVersions, fetchedItems] = await Promise.all([
+          fetchVersions(),
+          fetchItems(),
+        ]);
         setLatestVersion(fetchedVersions[0]);
-        setError(null);
-      } catch (err: any) {
-        // console.error('버전을 가져오는 데 실패했습니다:', err);
-        setError(err.message);
-      }
-    };
-
-    const loadItems = async () => {
-      try {
-        const fetchedItems = await fetchItems();
         setItems(fetchedItems.data);
         setError(null);
       } catch (err: any) {
-        // console.error('아이템 정보를 가져오는 데 실패했습니다:', err);
-        setError(err.message);
+        setError(err?.message);
       }
     };
 
-    loadVersions();
-    loadItems();
+    loadData();
   }, []);
 
   return (
@@ -50,9 +42,8 @@ const ItemListPage = () => {
             const itemImageUrl = `https://ddragon.leagueoflegends.com/cdn/${latestVersion}/img/item/${itemListDetail.image.full}`;
 
             return (
-              <div key={itemListDetail.id}>
+              <div key={itemListDetail.name}>
                 <Link
-                  key={itemListDetail.name}
                   href={`/items/${itemListDetail.name}`}
                   className="common-box"
                 >
