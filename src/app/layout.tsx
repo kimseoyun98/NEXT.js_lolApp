@@ -6,12 +6,18 @@ import { Navbar } from '@/components/Navbar';
 import { useEffect } from 'react';
 import { useThemeStore } from '@/utils/store/useThemeStore';
 import ThemeSwitchButton from '@/components/ThemeSwitch';
+import { Metadata } from 'next';
 
 const nanumGothic = Nanum_Gothic({
   weight: ['400', '800'],
   subsets: ['latin'],
   variable: '--font-nanum-gothic',
 });
+
+export const metadata: Metadata = {
+  title: '리그오브레전드 정보 앱',
+  description: '리그오브레전드 정보 앱입니다',
+};
 
 export default function RootLayout({
   children,
