@@ -1,6 +1,11 @@
 import Image from 'next/image';
 import { Props } from '@/types/Props';
 import { fetchChampionsDetail, fetchVersions } from '@/utils/serverApi';
+import {
+  getChampionSplashArtUrl01,
+  getChampionSplashArtUrl02,
+  getChampionSplashArtUrl03,
+} from '@/utils/championUtils';
 
 const ChampionPage = async ({ params }: Props) => {
   const fetchedChampionDetail = await fetchChampionsDetail(params.id);
@@ -11,9 +16,12 @@ const ChampionPage = async ({ params }: Props) => {
     return <div>챔피언을 찾을 수 없습니다.</div>;
   }
   const imageUrl = `https://ddragon.leagueoflegends.com/cdn/${latestVersion}/img/champion/${fetchedChampionDetail.image.full}`;
+  const splashArtUrl01 = getChampionSplashArtUrl01(fetchedChampionDetail.id);
+  const splashArtUrl02 = getChampionSplashArtUrl02(fetchedChampionDetail.id);
+  const splashArtUrl03 = getChampionSplashArtUrl03(fetchedChampionDetail.id);
 
   return (
-    <div className="w-screen h-full flex justify-center items-center pt-16">
+    <div className="w-screen h-full flex flex-col items-center p-40">
       <div className="flex flex-row items-center gap-10">
         <div>
           <Image
@@ -55,9 +63,33 @@ const ChampionPage = async ({ params }: Props) => {
             {'▸'}
             <p>{fetchedChampionDetail.title}</p>
           </div>
-          <main className="text-left w-[300px]">
-            {fetchedChampionDetail.blurb}
-          </main>
+          <p className="text-left w-[300px]">{fetchedChampionDetail.blurb}</p>
+        </div>
+      </div>
+      <div className="p-40 mb-[-400px]">
+        <h3 className="text-center">{fetchedChampionDetail.name} 컨셉아트</h3>
+        <div className="mt-10">
+          <div key={fetchedChampionDetail.id} className="mb-10">
+            <img
+              src={splashArtUrl01}
+              alt={fetchedChampionDetail.name}
+              className="w-120 h-auto mx-auto"
+            />
+          </div>
+          <div key={fetchedChampionDetail.id} className="mb-10">
+            <img
+              src={splashArtUrl02}
+              alt={fetchedChampionDetail.name}
+              className="w-120 h-auto mx-auto"
+            />
+          </div>
+          <div key={fetchedChampionDetail.id}>
+            <img
+              src={splashArtUrl03}
+              alt={fetchedChampionDetail.name}
+              className="w-120 h-auto mx-auto"
+            />
+          </div>
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ import Logo from '/public/assets/logo.png';
 
 export const Navbar = () => {
   return (
-    <nav className="fixed top-0 left-0 z-10 w-full backdrop-blur bg-white/10">
+    <nav className="fixed top-0 left-0 z-10 w-full backdrop-blur border-b-2 border-gray-200 dark:bg-gray-800 dark:border-none">
       <div className="max-w-8xl mx-auto px-12">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">

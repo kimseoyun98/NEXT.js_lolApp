@@ -1,10 +1,10 @@
-import { MainImage1, MainImage2, MainImage3 } from "@/components/MainImage";
+import { MainImage1, MainImage2, MainImage3 } from '@/components/MainImage';
 
 const HomePage = () => {
   return (
-    <div className="h-full p-10">
+    <div className="h-full p-20">
       <div className="flex flex-col justify-center gap-40">
-        <div className="block w-[600px] mt-20">
+        <div className="block w-[600px] mt-40">
           <p className="flex justify-left mb-4">
             리그오브레전드 입문자를 위한 가이드
           </p>

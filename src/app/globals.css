@@ -8,58 +8,13 @@
 }
 
 :root {
-  --background: #ffffff; /* 밝은 배경 */
-  --foreground: #333333; /* 어두운 텍스트 색상 */
+  --background: #ffffff;
 }
 
 body {
-  color: var(--foreground);
   background: var(--background);
 }
 
-@layer base {
-  /* 불필요한 text-wrap 속성 제거 */
-}
-
-@layer components {
-  .common-box {
-    @apply block m-2 w-[160px] h-[200px] pt-4 p-2 bg-white border-gray-200 hover:bg-gray-100;
-  }
-
-  .nav-link {
-    color: #333333;
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-decoration: none;
-    padding: 0.8rem;
-  }
-
-  .nav-link:hover {
-    color: #000000;
-    background-color: rgba(200, 200, 200, 0.4); /* 호버 시 배경 색상 */
-    border-radius: 1rem;
-  }
-
-  .main-Imgbox {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    opacity: 0;
-  }
-
-  .group:hover .main-Imgbox {
-    opacity: 1; /* 호버 시 보이기 */
-    transition: 0.6s ease;
-  }
-  .slick-list {
-    overflow: hidden;
-  }
-}
-
-/* 기본 제목 및 본문 스타일 */
 h1 {
   @apply text-xxl font-bold;
 }
@@ -72,15 +27,10 @@ h3 {
   @apply text-m text-gray-700 font-bold;
 }
 
-main {
-  @apply text-sm text-gray-800 font-medium leading-7;
-}
-
 p {
   @apply text-sm text-gray-700 font-normal;
 }
 
-/* 테이블 스타일 */
 th,
 td {
   @apply text-left border border-gray-300 p-2 text-sm text-gray-800 font-normal;
@@ -90,20 +40,49 @@ tr {
   @apply bg-gray-100;
 }
 
-.dark {
-  --background: rgb(1, 10, 19);
-  --foreground: #ededed;
+.common-box {
+  @apply block m-2 w-[160px] h-[200px] pt-4 p-2 border-none rounded-xl shadow-custom-light;
 }
 
-.dark body {
-  overflow: auto;
-  color: var(--foreground);
-  background: var(--background);
+.common-box:hover {
+  @apply bg-gray-200;
+}
+
+.nav-link {
+  color: #333333;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.8rem;
+}
+
+.nav-link:hover {
+  color: #000000;
+  background-color: rgba(200, 200, 200, 0.4);
+  border-radius: 1rem;
+}
+
+.main-Imgbox {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+}
+
+.group:hover .main-Imgbox {
+  opacity: 1;
+  transition: 0.6s ease;
 }
 
 .dark .common-box {
-  @apply block m-2 w-[160px] h-[200px] pt-4 p-2 bg-opacity-5 border-gray-700 hover:bg-gray-900;
-  border-radius: large;
+  @apply block m-2 w-[160px] h-[200px] pt-4 p-2 border-none rounded-xl shadow-custom-dark;
+}
+
+.dark .common-box:hover {
+  @apply bg-gray-900;
 }
 
 .dark .nav-link {
@@ -116,19 +95,8 @@ tr {
   border-radius: 1rem;
 }
 
-.dark .main-Imgbox {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  opacity: 0;
-}
-
-.dark .group:hover .main-Imgbox {
-  opacity: 1;
-  transition: 0.6s ease;
+.dark {
+  --background: rgb(1, 10, 19);
 }
 
 .dark h1 {
@@ -158,4 +126,26 @@ tr {
 
 .dark tr {
   @apply bg-gray-900;
+}
+
+.dark .slick-dots {
+  display: flex;
+  justify-content: center;
+}
+
+.dark .slick-dots li {
+  margin: 0 1px;
+}
+
+.dark .slick-dots li button:before {
+  font-size: 4px;
+  margin-top: 40px;
+  color: white;
+  opacity: 0.2;
+}
+
+.dark .slick-dots li.slick-active button:before {
+  color: white;
+  font-size: 6px;
+  opacity: 1;
 }

@@ -1,7 +1,5 @@
 'use client';
 
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import './globals.css';
 import { Nanum_Gothic } from 'next/font/google';
 import { Navbar } from '@/components/Navbar';
@@ -22,7 +20,6 @@ export default function RootLayout({
 }>) {
   const { darkMode } = useThemeStore();
 
-  // 다크 모드에 따라 클래스 토글
   useEffect(() => {
     document.documentElement.classList.toggle('dark', darkMode);
   }, [darkMode]);
@@ -37,8 +34,9 @@ export default function RootLayout({
       </head>
       <body className={`${nanumGothic.variable} antialiased`}>
         <Navbar />
-        <main className="mt-20 p-6">{children}</main>
-        <div className="fixed bottom-5 right-5"></div>
+        <div className="flex flex-col justify-center min-h-screen">
+          <main>{children}</main>
+        </div>
         <ThemeSwitchButton />
       </body>
     </html>

@@ -25,15 +25,15 @@ export async function GET(): Promise<
     );
 
     if (!res.ok) {
-      throw Error(`HTTP 오류 발생! 상태: ${res.status} - ${res.statusText}`);
+      throw Error(`${res.status} - ${res.statusText}`);
     }
     const data = await res.json();
     const freeIds: ChampionsRotation = data.freeChampionIds;
     console.log('가져온데이터:', freeIds);
 
     return NextResponse.json(freeIds);
-  } catch (error: any) {
-    console.error('데이터를 가져오는 중 오류:', error);
-    return NextResponse.json({ message: error.message }, { status: 500 });
+  } catch (error) {
+    console.error('에러:', error);
+    return NextResponse.json({ message: '500' }, { status: 500 });
   }
 }
