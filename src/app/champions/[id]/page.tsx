@@ -102,17 +102,17 @@ export async function generateMetadata({ params }: Props) {
   return {
     title: fetchedChampionsDetail
       ? fetchedChampionsDetail.name
-      : '아이템 페이지',
+      : '챔피언 페이지',
     description: fetchedChampionsDetail
       ? fetchedChampionsDetail.id
-      : '아이템 정보를 가져올 수 없습니다.',
+      : '챔피언 정보를 가져올 수 없습니다.',
     openGraph: {
       title: fetchedChampionsDetail
         ? fetchedChampionsDetail.name
-        : '아이템 페이지',
+        : '챔피언 페이지',
       description: fetchedChampionsDetail
         ? fetchedChampionsDetail.id
-        : '아이템 정보를 가져올 수 없습니다.',
+        : '챔피언 정보를 가져올 수 없습니다.',
       images: [
         fetchedChampionsDetail
           ? `https://ddragon.leagueoflegends.com/cdn/img/item/${fetchedChampionsDetail.image.full}`

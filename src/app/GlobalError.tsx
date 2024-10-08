@@ -13,7 +13,7 @@ export default function GlobalError({ error }: { error: Error }) {
         <p className="text-gray-800 dark:text-gray-200">{error.message}</p>
         <button
           onClick={() => router.push('/')}
-          className="ml-2 text-xs text-white bg-blue-500 hover:bg-blue-600 rounded-full px-4 py-2 transition"
+          className="block w-[80px] ml-2 text-xs line-clamp-1 text-white bg-blue-500 hover:bg-blue-600 rounded-lg px-2 py-2 transition"
         >
           홈으로 가기
         </button>
