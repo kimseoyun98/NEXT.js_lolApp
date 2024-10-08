@@ -48,6 +48,10 @@ tr {
   @apply bg-gray-200;
 }
 
+.toast-custom {
+  margin-top: 40px;
+}
+
 .nav-link {
   color: #333333;
   font-size: 0.8rem;

@@ -37,3 +37,5 @@ db.json
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+node_modules

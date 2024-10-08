@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { fetchItems, fetchVersions } from '@/utils/serverApi';
 import { LoadingSpinner } from '@/components/LoadingSpinner';
-import GlobalError from '@/components/GlobalError';
+import GlobalError from '@/app/GlobalError';
 
 async function getItemsData() {
   try {
@@ -34,7 +34,7 @@ export default async function ItemListPage() {
                 const itemImageUrl = `https://ddragon.leagueoflegends.com/cdn/${latestVersion}/img/item/${itemListDetail.image.full}`;
 
                 return (
-                  <div key={itemListDetail.name}>
+                  <div>
                     <Link
                       href={`/items/${itemListDetail.name}`}
                       className="common-box"

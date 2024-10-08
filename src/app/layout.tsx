@@ -3,6 +3,7 @@ import { Nanum_Gothic } from 'next/font/google';
 import { Navbar } from '@/components/Navbar';
 import ThemeSwitchButton from '@/components/ThemeSwitch';
 import { Metadata } from 'next';
+import GlobalError from './GlobalError';
 
 const nanumGothic = Nanum_Gothic({
   weight: ['400', '800'],
@@ -17,8 +18,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  error, // error prop을 받음
 }: Readonly<{
   children: React.ReactNode;
+  error: Error | null; // error prop의 타입
 }>) {
   return (
     <html lang="ko">
@@ -29,11 +32,18 @@ export default function RootLayout({
         />
       </head>
       <body className={`${nanumGothic.variable} antialiased`}>
-        <Navbar />
-        <div className="flex flex-col justify-center min-h-screen">
-          <main>{children}</main>
-        </div>
-        <ThemeSwitchButton />
+        {/* 에러가 발생한 경우 GlobalError를 사용 */}
+        {error ? (
+          <GlobalError error={error} />
+        ) : (
+          <>
+            <Navbar />
+            <div className="flex flex-col justify-center min-h-screen">
+              <main>{children}</main>
+            </div>
+            <ThemeSwitchButton />
+          </>
+        )}
       </body>
     </html>
   );

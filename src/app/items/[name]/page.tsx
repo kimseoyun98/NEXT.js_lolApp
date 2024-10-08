@@ -1,4 +1,4 @@
-import GlobalError from '@/components/GlobalError';
+import GlobalError from '@/app/GlobalError';
 import { Props } from '@/types/Props';
 import { fetchItemsDetail, fetchVersions } from '@/utils/serverApi';
 import Image from 'next/image';

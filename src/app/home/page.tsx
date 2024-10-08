@@ -1,4 +1,6 @@
+import { LoadingSpinner } from '@/components/LoadingSpinner';
 import { MainImage1, MainImage2, MainImage3 } from '@/components/MainImage';
+import { Suspense } from 'react';
 
 const HomePage = () => {
   return (
@@ -14,9 +16,15 @@ const HomePage = () => {
           </h1>
         </div>
         <div className="flex flex-col justify-center gap-8">
-          <MainImage1 />
-          <MainImage2 />
-          <MainImage3 />
+          <Suspense fallback={<LoadingSpinner />}>
+            <MainImage1 />
+          </Suspense>
+          <Suspense fallback={<LoadingSpinner />}>
+            <MainImage2 />
+          </Suspense>
+          <Suspense fallback={<LoadingSpinner />}>
+            <MainImage3 />
+          </Suspense>
         </div>
       </div>
     </div>
