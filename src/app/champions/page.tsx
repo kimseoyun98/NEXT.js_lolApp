@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { fetchChampions, fetchVersions } from '@/utils/serverApi';
 import GlobalError from '@/app/GlobalError';
 
-async function getItemsData() {
+async function getChampionsData() {
   const [fetchedVersions, fetchedChampions] = await Promise.all([
     fetchVersions(),
     fetchChampions(),
@@ -16,7 +16,7 @@ async function getItemsData() {
 
 export default async function ChampionListPage() {
   try {
-    const { versions, champions } = await getItemsData();
+    const { versions, champions } = await getChampionsData();
     const latestVersion = versions[0];
 
     return (
